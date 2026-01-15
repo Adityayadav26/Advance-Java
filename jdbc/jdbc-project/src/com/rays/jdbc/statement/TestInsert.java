@@ -1,0 +1,27 @@
+package com.rays.jdbc.statement;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class TestInsert {
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbcproject","root","root");
+		
+		System.out.println("java is connected with mysql successfully.....");
+		
+		
+		Statement stmt = conn.createStatement();
+		
+		int i = stmt.executeUpdate("insert into st_user values(6, 'Rohit', 'pandit', 'rohit@gmail.com', 'rohit123', '2002-02-02')");
+		
+		System.out.println(i + "row affected.....(records inserted)");
+		
+		conn.close();
+	}
+
+}

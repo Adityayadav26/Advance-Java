@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.rays.jdbc&apos; to &apos;com.rays.jdbc.statement&apos;&#x0D;&#x0A;- Original project: &apos;jdbc-project&apos;&#x0D;&#x0A;- Original element: &apos;jdbc-project/src/com.rays.jdbc&apos;&#x0D;&#x0A;- Renamed element: &apos;jdbc-project/src/com.rays.jdbc.statement&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.rays.jdbc&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;com.rays.jdbc" name="com.rays.jdbc.statement" qualified="false" references="true" stamp="1768299222433" textual="false" version="1.0"/>
+</session>
