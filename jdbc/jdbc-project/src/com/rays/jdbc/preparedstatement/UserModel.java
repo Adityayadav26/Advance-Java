@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.mysql.cj.protocol.Resultset;
 
 public class UserModel {
 
@@ -107,8 +111,9 @@ public class UserModel {
 
 		conn.close();
 		pstmt.close();
-        return bean;
+		return bean;
 	}
+
 	public UserBean findBypk(int pk) throws Exception {
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -137,12 +142,10 @@ public class UserModel {
 
 		conn.close();
 		pstmt.close();
-        return bean;
+		return bean;
 	}
-	
-	
-	
-	public UserBean authenticate(String login , String password) throws Exception {
+
+	public UserBean authenticate(String login, String password) throws Exception {
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -171,6 +174,70 @@ public class UserModel {
 
 		conn.close();
 		pstmt.close();
-        return bean;
+		return bean;
+	}
+
+	public List search(UserBean bean) throws Exception {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbcproject", "root", "root");
+
+		StringBuffer sql = new StringBuffer("Select * from st_user where 1 =1");
+
+		if (bean != null) {
+			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
+				sql.append("and firstName like" + bean.getFirstName() + "%");
+			}
+
+			if (bean.getLastName() != null && bean.getLastName().length() > 0) {
+				sql.append("and lastName like" + bean.getLastName() + "%");
+			}
+		}
+
+		System.out.println("sql Query" + sql.toString());
+
+		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		ResultSet rs = pstmt.executeQuery();
+
+		List list = new ArrayList();
+
+		while (rs.next()) {
+			bean = new UserBean();
+			bean.setId(rs.getInt(1));
+			bean.setFirstName(rs.getString(2));
+			bean.setLastName(rs.getString(3));
+			bean.setLogin(rs.getString(4));
+			bean.setPassword(rs.getString(5));
+			bean.setDob(rs.getDate(6));
+			list.add(bean);
+		}
+
+		conn.close();
+		pstmt.close();
+		return list;
+
+	}
+
+	public void search1(UserBean bean) throws Exception {
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbcproject", "root", "root");
+		
+		
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_user");
+		ResultSet rs = pstmt.executeQuery("select * from st_user");
+
+		while (rs.next()) {
+			bean = new UserBean();
+			bean.setId(rs.getInt(1));
+			bean.setFirstName(rs.getString(2));
+			bean.setLastName(rs.getString(3));
+			bean.setLogin(rs.getString(4));
+			bean.setPassword(rs.getString(5));
+			bean.setDob(rs.getDate(6));
+
+		}
+		conn.close();
+		pstmt.close();
 	}
 }

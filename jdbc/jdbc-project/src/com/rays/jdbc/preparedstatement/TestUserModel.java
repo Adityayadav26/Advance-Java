@@ -1,15 +1,20 @@
 package com.rays.jdbc.preparedstatement;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class TestUserModel {
 	public static void main(String[] args) throws Exception {
-		//testAdd();
+		// testAdd();
 		// testUpdate();
 		// testDelete();
-		//testfindbylogin();
-		//testfindbypk();
-		testauthenticate();
+		// testfindbylogin();
+		// testfindbypk();
+		// testauthenticate();
+		// testsearch();
+		testSearch1();
 	}
 
 	public static void testAdd() throws Exception {
@@ -59,13 +64,14 @@ public class TestUserModel {
 		model.Delete(bean);
 
 	}
+
 	public static void testfindbylogin() throws Exception {
 
 		UserModel model = new UserModel();
 		UserBean bean = new UserBean();
 
 		bean = model.findByLogin("alok@gmail.com");
-		
+
 		System.out.println(bean.getId());
 		System.out.println(bean.getFirstName());
 		System.out.println(bean.getLastName());
@@ -73,13 +79,14 @@ public class TestUserModel {
 		System.out.println(bean.getPassword());
 		System.out.println(bean.getDob());
 	}
+
 	public static void testfindbypk() throws Exception {
 
 		UserModel model = new UserModel();
 		UserBean bean = new UserBean();
 
 		bean = model.findBypk(7);
-		
+
 		System.out.println(bean.getId());
 		System.out.println(bean.getFirstName());
 		System.out.println(bean.getLastName());
@@ -87,20 +94,64 @@ public class TestUserModel {
 		System.out.println(bean.getPassword());
 		System.out.println(bean.getDob());
 	}
-	
+
 	public static void testauthenticate() throws Exception {
 
 		UserModel model = new UserModel();
 		UserBean bean = new UserBean();
 
-		bean = model.authenticate("alok@gmail.com","alok123");
-		
+		bean = model.authenticate("alok@gmail.com", "alok123");
+
 		System.out.println(bean.getId());
 		System.out.println(bean.getFirstName());
 		System.out.println(bean.getLastName());
 		System.out.println(bean.getLogin());
 		System.out.println(bean.getPassword());
 		System.out.println(bean.getDob());
+
+	}
+
+	public static void testsearch() throws Exception {
+		UserModel model = new UserModel();
+		UserBean bean = new UserBean();
+
+		// bean.setFirstName("Aditya");
+		bean.setLastName("yadav");
+		List list = model.search(bean);
+
+		Iterator<UserBean> it = list.iterator();
+
+		while (it.hasNext()) {
+			bean = it.next();
+			System.out.println(bean.getId());
+			System.out.println(bean.getFirstName());
+			System.out.println(bean.getLastName());
+			System.out.println(bean.getLogin());
+			System.out.println(bean.getPassword());
+			System.out.println(bean.getDob());
+
+			model.search(bean);
+		}
+	}
+
+	public static void testSearch1() throws Exception {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		UserModel model = new UserModel();
+		UserBean bean = new UserBean();
+
+		bean.setFirstName("ajay");
+
+
+		System.out.println(bean.getId());
+		System.out.println(bean.getFirstName());
+		System.out.println(bean.getLastName());
+		System.out.println(bean.getLogin());
+		System.out.println(bean.getPassword());
+		System.out.println(bean.getDob());
+
+		model.search1(bean);
 
 	}
 }
