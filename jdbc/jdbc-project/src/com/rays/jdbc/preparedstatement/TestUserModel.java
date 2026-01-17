@@ -13,8 +13,8 @@ public class TestUserModel {
 		// testfindbylogin();
 		// testfindbypk();
 		// testauthenticate();
-		// testsearch();
-		testSearch1();
+		 testsearch();
+		//testSearch1();
 	}
 
 	public static void testAdd() throws Exception {
@@ -115,8 +115,8 @@ public class TestUserModel {
 		UserModel model = new UserModel();
 		UserBean bean = new UserBean();
 
-		// bean.setFirstName("Aditya");
-		bean.setLastName("yadav");
+		 bean.setFirstName("Aditya");
+		//bean.setLastName("yadav");
 		List list = model.search(bean);
 
 		Iterator<UserBean> it = list.iterator();

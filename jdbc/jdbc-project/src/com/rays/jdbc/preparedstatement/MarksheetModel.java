@@ -9,9 +9,9 @@ public class MarksheetModel {
 	public void add(MarksheetBean bean) throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbcproject", "root", "root");
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rays", "root", "root");
 
-		PreparedStatement pstmt = conn.prepareStatement("insert into student_marksheet values(?,?,?,?,?,?)");
+		PreparedStatement pstmt = conn.prepareStatement("insert into marksheet values(?,?,?,?,?,?)");
 
 		pstmt.setInt(1, bean.getId());
 		pstmt.setInt(2, bean.getRollNo());
