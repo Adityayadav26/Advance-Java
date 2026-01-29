@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<%
+UserBean userbean = (UserBean) session.getAttribute("user");
+%>
+
+<%
+if (userbean != null){
+%>
+
+<h2><%="Hii, "+ userbean.getFristName() %></h2>
+<a href = "LoginCtl?operation=logout">logout</a>
+<a herf = "#"> Add User </a>
+<a herf = "#"> User list </a>
+<%
+}else{	
+%> 
+<h2>Hii, Guest</h2>
+<a href = "LoginCtl"> login</a>
+<a herf = "WelcomeCtl">welcome </a>
+<%
+}
+%>
+
+
+<hr>
+
+</body>
+</html>
