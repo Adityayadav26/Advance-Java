@@ -21,6 +21,7 @@
 
 			<table widht="100%" border="1px">
 				<tr>
+					<th>Select</th>
 					<th>Id</th>
 					<th>First Name</th>
 					<th>Last Name</th>
@@ -36,6 +37,8 @@
 					UserBean bean = (UserBean) it.next();
 				%>
 				<tr>
+					<td><input type="checkbox" name="ids"
+						Value="<%=bean.getId()%>"></td>
 					<td><%=bean.getId()%></td>
 					<td><%=bean.getFirstName()%></td>
 					<td><%=bean.getLastName()%></td>
@@ -48,6 +51,11 @@
 				}
 				%>
 
+			</table>
+			<table>
+				<tr>
+					<td><input type="Submit" name="operation" Value="Delete"></td>
+					</tr>
 			</table>
 
 		</form>
