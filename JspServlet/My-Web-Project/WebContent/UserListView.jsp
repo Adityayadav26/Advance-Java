@@ -16,7 +16,7 @@
 
 	<%@ include file="Header.jsp"%>
 	<div align="center">
-		<form action="UserListCtl" method="Post">
+		<form action="UserListCtl.do" method="Post">
 			<h1>User List</h1>
 
 			<table widht="100%" border="1px">
