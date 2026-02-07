@@ -18,6 +18,15 @@
 	<div align="center">
 		<form action="UserListCtl.do" method="Post">
 			<h1>User List</h1>
+			
+			<table>
+				<tr>
+					<th>First Name</th>
+					<td><input type="text" name="firstName" value=""
+						placeholder="search by firstName"> <input type="submit"
+						name="operation" value="search"></td>
+				</tr>
+			</table>
 
 			<table widht="100%" border="1px">
 				<tr>
@@ -28,6 +37,7 @@
 					<th>Login</th>
 					<th>Password</th>
 					<th>Dob</th>
+					<th>Edit</th>
 				</tr>
 
 				<%
@@ -45,6 +55,7 @@
 					<td><%=bean.getLogin()%></td>
 					<td><%=bean.getPassword()%></td>
 					<td><%=bean.getDob()%></td>
+					<td><a href="UserCtl.do?id=<%=bean.getId()%>">edit</a></td>
 
 				</tr>
 				<%

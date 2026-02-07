@@ -15,11 +15,33 @@ import com.rays.model.UserModel;
 
 @WebServlet("/UserCtl.do")
 public class UserCtl extends HttpServlet{
+	
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("UserView.jsp");
+		
+		
+		UserModel model = new UserModel();
+		UserBean bean = new UserBean();
+
+		String id = request.getParameter("id");
+
+		if (id != null) {
+			try {
+				bean = model.findBypk(Integer.parseInt(id));
+				request.setAttribute("bean", bean);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		RequestDispatcher rd = request.getRequestDispatcher("UserView.jsp");
+		rd.forward(request, response);
 	}
+
+	
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

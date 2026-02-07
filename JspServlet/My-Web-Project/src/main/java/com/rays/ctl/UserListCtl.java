@@ -15,6 +15,7 @@ import com.rays.model.UserModel;
 
 @WebServlet("/UserListCtl.do")
 public class UserListCtl extends HttpServlet {
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -53,6 +54,9 @@ public class UserListCtl extends HttpServlet {
 					}
 				}
 			}
+		}
+		if (op.equals("search")) {
+			bean.setFirstName(request.getParameter("firstName"));
 		}
 			
 			try {
